@@ -25,20 +25,19 @@ public class CustomerDAO extends DAO {
         try {
             conn = getConnection();
             
-            // First, check if username already exists
+            // check username
             String checkSql = "SELECT COUNT(*) FROM tblUser WHERE username = ?";
             checkStmt = conn.prepareStatement(checkSql);
             checkStmt.setString(1, customer.getUsername());
             checkRs = checkStmt.executeQuery();
             
             if (checkRs.next() && checkRs.getInt(1) > 0) {
-                // Username already exists, return false
                 return false;
             }
             
             beginTransaction(conn);
             
-            // Generate next membership number inside the transaction
+            // Generate membership number
             String membershipNumber = "CM00001";
             String membershipSql = "SELECT MAX(membershipNumber) FROM tblCustomer WHERE membershipNumber LIKE 'CM%'";
             membershipStmt = conn.prepareStatement(membershipSql);
@@ -74,7 +73,7 @@ public class CustomerDAO extends DAO {
                     if (generatedKeys.next()) {
                         int userId = generatedKeys.getInt(1);
                         
-                        // Then, insert into tblCustomer
+                        // Insert into tblCustomer
                         String customerSql = "INSERT INTO tblCustomer (tblUserid, membershipNumber) VALUES (?, ?)";
                         customerStmt = conn.prepareStatement(customerSql);
                         customerStmt.setInt(1, userId);

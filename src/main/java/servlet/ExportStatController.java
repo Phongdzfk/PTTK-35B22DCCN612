@@ -18,7 +18,6 @@ public class ExportStatController extends HttpServlet {
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
 
-        // Call ExportStatDAO to get statistics
         ExportStatDAO exportStatDAO = new ExportStatDAO();
         List<ExportStat> exportStats = null;
         

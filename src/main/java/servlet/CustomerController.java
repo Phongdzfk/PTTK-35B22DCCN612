@@ -24,14 +24,12 @@ public class CustomerController extends HttpServlet {
 
         CustomerDAO customerDAO = new CustomerDAO();
         
-        // Validate password confirmation
+        // Validate password
         String passwordError = "";
         
         if (!password.equals(confirmPassword)) {
             passwordError = "Passwords do not match";
         }
-        
-        // If there are validation errors, return to registration form
         if (!passwordError.isEmpty()) {
             request.setAttribute("passwordError", passwordError);
             request.setAttribute("username", username);
@@ -53,7 +51,6 @@ public class CustomerController extends HttpServlet {
         customer.setEmailaddress(emailaddress);
         customer.setAddress(address);
 
-        // Call CustomerDAO to save registration info
         boolean result = customerDAO.saveRegisterInfo(customer);
 
         // Return result to RegisFormView.jsp
@@ -61,7 +58,6 @@ public class CustomerController extends HttpServlet {
             String successMessage = "Registration successful! Your membership number is: " + customer.getMembershipNumber();
             response.sendRedirect("view/Customer/HomePageView.jsp?success=" + java.net.URLEncoder.encode(successMessage, "UTF-8"));
         } else {
-            // Username already exists
             request.setAttribute("usernameError", "Your username or email already exists, please try again with a different username or email.");
             request.setAttribute("username", username);
             request.setAttribute("fullname", fullname);

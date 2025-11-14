@@ -22,13 +22,41 @@ public class InvoiceController extends HttpServlet {
         if (exportStatJson != null && !exportStatJson.isEmpty()) {
             try {
                 
-                ExportStat exportStat = parseExportStatFromJson(exportStatJson);
-                int itemId = exportStat.getId();
+                exportStatJson = exportStatJson.replaceAll("[{}\"]", "");
+                String[] pairs = exportStatJson.split(",");
                 
+                ExportStat exportStat = new ExportStat();
+                
+                for (String pair : pairs) {
+                    String[] keyValue = pair.split(":");
+                    if (keyValue.length == 2) {
+                        String key = keyValue[0].trim();
+                        String value = keyValue[1].trim();
+                        
+                        try {
+                            switch (key) {
+                                case "itemId":
+                                    exportStat.setId(Integer.parseInt(value));
+                                    break;
+                                case "itemName":
+                                    exportStat.setName(value);
+                                    break;
+                                case "totalQuantity":
+                                    exportStat.setTotalQuantity(Integer.parseInt(value));
+                                    break;
+                                case "totalRevenue":
+                                    exportStat.setTotalRevenue(Double.parseDouble(value));
+                                    break;
+                            }
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                int itemId = exportStat.getId();
                 
                 InvoiceDAO invoiceDAO = new InvoiceDAO();
                 
-                // Get list of Invoices containing the selected item within the date range
                 List<Invoice> invoices = invoiceDAO.getInvoiceListOfItem(itemId, startDate, endDate);
                 
                 // Return result to InvoiceView.jsp
@@ -48,40 +76,4 @@ public class InvoiceController extends HttpServlet {
         rd.forward(request, response);
     }
     
-    private ExportStat parseExportStatFromJson(String json) {
-        // Simple JSON parsing - remove braces and quotes, then split by comma
-        json = json.replaceAll("[{}\"]", "");
-        String[] pairs = json.split(",");
-        
-        ExportStat exportStat = new ExportStat();
-        
-        for (String pair : pairs) {
-            String[] keyValue = pair.split(":");
-            if (keyValue.length == 2) {
-                String key = keyValue[0].trim();
-                String value = keyValue[1].trim();
-                
-                try {
-                    switch (key) {
-                        case "itemId":
-                            exportStat.setId(Integer.parseInt(value));
-                            break;
-                        case "itemName":
-                            exportStat.setName(value);
-                            break;
-                        case "totalQuantity":
-                            exportStat.setTotalQuantity(Integer.parseInt(value));
-                            break;
-                        case "totalRevenue":
-                            exportStat.setTotalRevenue(Double.parseDouble(value));
-                            break;
-                    }
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        
-        return exportStat;
-    }
 }

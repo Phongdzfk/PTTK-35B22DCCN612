@@ -10,13 +10,11 @@ public class LogoutController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // Invalidate session
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
         
-        // Redirect to home page
         response.sendRedirect("view/Customer/HomePageView.jsp");
     }
 }
