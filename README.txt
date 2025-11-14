@@ -6,7 +6,7 @@ PROJECT OVERVIEW
 ----------------
 This is a Java web application built using JSP (JavaServer Pages) and Servlets
 following the MVC (Model-View-Controller) architecture pattern. The application
-appears to be an E-commerce/Inventory Management System with support for
+appears to be an online department store Management System with support for
 customers, staff members, invoices, and statistics.
 
 TECHNOLOGY STACK
@@ -14,7 +14,6 @@ TECHNOLOGY STACK
 - Java (JSP & Servlets)
 - MySQL Database
 - JSTL (JSP Standard Tag Library)
-- JBCrypt (for password hashing)
 - MySQL Connector/J (JDBC driver)
 
 PROJECT STRUCTURE
@@ -76,7 +75,6 @@ JSP_Servlet_Demo/
 │           └── WEB-INF/                     # Web application configuration
 │               ├── web.xml                  # Servlet deployment descriptor
 │               └── lib/                     # External JAR libraries
-│                   ├── jbcrypt-0.4.jar      # Password hashing library
 │                   ├── jstl-1.2.jar         # JSP Standard Tag Library
 │                   └── mysql-connector-j-8.0.31.jar # MySQL JDBC driver
 │
