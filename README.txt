@@ -44,7 +44,7 @@ JSP_Servlet_Demo/
 │       │   │   ├── Item.java              # Item/Product entity
 │       │   │   └── ExportStat.java        # Export statistics entity
 │       │   │
-│       │   └── servlet/                    # Controller layer (Servlets)
+│       │   └── controller/                    # Controller layer (Servlets)
 │       │       ├── LoginController.java    # Handles user login
 │       │       ├── LogoutController.java   # Handles user logout
 │       │       ├── CustomerController.java  # Handles customer registration
@@ -95,17 +95,14 @@ The project follows MVC (Model-View-Controller) architecture:
    - JSP files for user interface presentation
    - Organized by user role (Customer, ManagementStaff)
 
-3. CONTROLLER (servlet/):
+3. CONTROLLER (controller/):
    - Servlets handle HTTP requests, process business logic,
      interact with DAOs, and forward to appropriate views
 
 KEY FEATURES
 ------------
-1. User Management:
-   - User registration with username and email uniqueness validation
-   - Automatic membership number generation for customers
-   - Login/Logout functionality
-   - Role-based access (Customer, Staff, Management Staff)
+1. Statistic Management:
+   - Manage statistics as manager
 
 2. Customer Registration:
    - Form validation (password confirmation, unique username/email)
@@ -149,7 +146,6 @@ DEPENDENCIES
 Required JAR files (in WEB-INF/lib/):
 - mysql-connector-j-8.0.31.jar: MySQL database connectivity
 - jstl-1.2.jar: JSP Standard Tag Library for JSP enhancements
-- jbcrypt-0.4.jar: Password hashing/encryption
 
 SETUP INSTRUCTIONS
 ------------------
