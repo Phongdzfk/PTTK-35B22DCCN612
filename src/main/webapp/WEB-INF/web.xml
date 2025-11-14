@@ -15,7 +15,7 @@
     <!-- Servlet Mappings -->
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>servlet.LoginController</servlet-class>
+        <servlet-class>controller.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>LogoutController</servlet-name>
-        <servlet-class>servlet.LogoutController</servlet-class>
+        <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
@@ -33,7 +33,7 @@
 
     <servlet>
         <servlet-name>CustomerController</servlet-name>
-        <servlet-class>servlet.CustomerController</servlet-class>
+        <servlet-class>controller.CustomerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerController</servlet-name>
@@ -42,7 +42,7 @@
 
     <servlet>
         <servlet-name>ExportStatController</servlet-name>
-        <servlet-class>servlet.ExportStatController</servlet-class>
+        <servlet-class>controller.ExportStatController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ExportStatController</servlet-name>
@@ -51,7 +51,7 @@
 
     <servlet>
         <servlet-name>InvoiceController</servlet-name>
-        <servlet-class>servlet.InvoiceController</servlet-class>
+        <servlet-class>controller.InvoiceController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>InvoiceController</servlet-name>
