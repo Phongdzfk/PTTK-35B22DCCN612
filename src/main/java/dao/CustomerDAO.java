@@ -23,18 +23,7 @@ public class CustomerDAO extends DAO {
         ResultSet membershipRs = null;
         
         try {
-            conn = getConnection();
-            
-            // check username
-            String checkSql = "SELECT COUNT(*) FROM tblUser WHERE username = ?";
-            checkStmt = conn.prepareStatement(checkSql);
-            checkStmt.setString(1, customer.getUsername());
-            checkRs = checkStmt.executeQuery();
-            
-            if (checkRs.next() && checkRs.getInt(1) > 0) {
-                return false;
-            }
-            
+            conn = getConnection();      
             beginTransaction(conn);
             
             // Generate membership number
